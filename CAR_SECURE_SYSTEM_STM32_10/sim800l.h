@@ -36,13 +36,14 @@ void sim800_init() // ПЕРЕДЕЛАТЬ
      do
      {
      resp=sendATCommand("AT+CREG?",true);
-     } while (resp.indexOf("+CREG: 0,1",0)<=-1); 
-      sendATCommand("AT+CMGF=1",true); //Текстовый режим включить  
-      sendATCommand("AT+CNMI=1,2,0,0,0",true);
-      sendATCommand("AT+CLIP=1",true); //АОН
-      sendATCommand("AT+DDET=1",true); //DTFM включаем   
-      sendATCommand("AT+COLP=1",true); //ожидание статуса звонка
-      //sendATCommand("AT+CSCLK=1",true); // устанавливает спящий режим
+     } 
+     while (resp.indexOf("+CREG: 0,1",0)<=-1); 
+    sendATCommand("AT+CMGF=1",true); //Текстовый режим включить  
+    sendATCommand("AT+CNMI=1,2,0,0,0",true);
+    sendATCommand("AT+CLIP=1",true); //АОН
+    sendATCommand("AT+DDET=1",true); //DTFM включаем   
+    sendATCommand("AT+COLP=1",true); //ожидание статуса звонка
+    //sendATCommand("AT+CSCLK=1",true); // устанавливает спящий режим
    }
   else return;  
   }

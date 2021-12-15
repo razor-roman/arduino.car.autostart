@@ -1,4 +1,4 @@
-#include <EEPROM.h>
+
 #include <Adafruit_Fingerprint.h>
 
 #define SIM800 Serial3
@@ -8,38 +8,22 @@
 #define RELAY1 PA7 //ACC
 #define RELAY2 PA6 //ON
 #define RELAY3 PA5 //INGITION
-#define RELAY4 PA4 
+#define RELAY4 PA4 //Alligator
 #define IGNITION_12V PB12
-#define HAND_BRAKE PB13
 #define DTR PB14
 #define INTERRUPT1 PB15
 
-
-byte auto_ignition=0;
-
-String PASSWORD="123456";
-String Temp_Phone="+79536879874";
-uint16_t action_timeout=10000;
-const String Phone="PHONE";
-bool LOGIC_NEUTRAL=false;
-bool logic_check=false;
-byte tempeture_cabin=100;
-int ignition_time=2000;
-byte warmup_timeout=30;
-bool accum_check=false;
-int voltage=12;
-
+#include "additional_functions.h"
+#include "EEPROM.h"
 #include "voltage_read.h"
 #include "thermistor.h"
 #include "tachometer.h"
-#include "additional_functions.h"
 #include "ignition.h"
-#include "EEPROM.h"
 #include "sim800l.h"
 #include "Fingerprint.h"
 #include "call.h"
 #include "sms.h"
-
+#include "FancyDelay.h"
 
 void setup() { 
   // put your setup code here, to run once:
@@ -84,11 +68,6 @@ if(auto_ignition==1) // машина запущена
   if(warmup_long<millis()) auto_ignition=0; 
   Serial.print("averagedRpm=");  
   Serial.println(averagedRpm); 
-  if(HAND_BRAKE==1)  
-    {
-    auto_ignition=0;
-    Serial.println("auto_ignition=0");   
-    }
   if(Thermister()>=tempeture_cabin)
     {      
     tempeture_cabin=100;

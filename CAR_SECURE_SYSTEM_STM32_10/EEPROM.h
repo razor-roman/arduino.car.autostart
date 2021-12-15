@@ -1,4 +1,6 @@
+// ПЕРЕДЕЛАТЬ ПРОВЕРИТЬ
 /*
+ * МАКСИМУМ 256 БАЙТ на STM32
  * 0-6 пароль
  * 7 температура салона
  * 8-9 зажигание время стартера
@@ -6,7 +8,21 @@
  * 11 время прогрева таймаут
  * 12 проверка аккумулятора bool
  * 15-165 телефоны
- */
+ */ 
+ #include <EEPROM.h>
+//----------------------------------------------- заместо EEPROM временно
+byte auto_ignition=0;
+String PASSWORD="123456";
+String Temp_Phone="+79536879874";
+uint16_t action_timeout=10000;
+const String Phone="PHONE";
+bool LOGIC_NEUTRAL=false;
+bool logic_check=false;
+byte tempeture_cabin=100;
+int ignition_time=2000;
+byte warmup_timeout=30;
+bool accum_check=false;
+int voltage=12;
 
 #define PASS_LENGTH 6
 #define PHONE_LENGTH 15

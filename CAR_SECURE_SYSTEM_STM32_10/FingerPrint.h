@@ -1,5 +1,4 @@
 
-
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
 void FingerPrint_init()

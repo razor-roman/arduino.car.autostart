@@ -1,6 +1,7 @@
 long warmup_long;
 
 bool engine_check();
+int ignition_time=2000;
 
 bool engine_on()
   { 
